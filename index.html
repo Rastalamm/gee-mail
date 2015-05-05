@@ -7,12 +7,62 @@
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
         
+	//	List of properties of the Object located within the array
+	//	date - The date message was sent
+	//	subject - The subject of the message
+	//	sender - The sender of the message
+	//	body - The GeeMail message conten
+		
+	//Need to list out each email/message 
+		//Build a table/div structure that will house each of the 4 properties
+		// each message must contain each property
+	//Create a loop/ for in loop to run through each property and place in proper div/table rows
+	//create a loop/ for in loop to run through each Object in array 
+	//the body property must be show differently (dom.onlick) - Lightbox? Alert? new tab)?
+	
+	//Display and inbox count on the page to show the total # of messages in the inbox
+	var totalMessages = window.geemails.length;
+	console.log(totalMessages);
+	
+	
+	//Review Recusion in JavaScript
+	//Use recursion on function setInterval() 
+	// to call the getNewMessage so it returns a new message with same properties as previous message # 6
+		
+		
+		
       };
     </script>
 	</head>
 	<body>
 		<div class="container" id="main">
-			Build Me!
+			<section class="top_header">
+				<div>
+					<h1>Gee-Mail</h1>
+				</div>
+			</section>
+			
+			<section class="mail_content">
+				<div>
+					<table>
+						<tr colspan="4">
+							<td>Date</td>
+							<td>Subject</td>
+							<td>From</td>
+							<td>Message</td>
+						</tr>
+						
+						<tr colspan="4">
+							<td id="date_input">Date</td>
+							<td id="subject_input">Subject</td>
+							<td id="from_input">From</td>
+							<td id="message_input">Message</td>
+						</tr>
+					</table>
+					
+				</div>
+			</section>
+			
 		</div>
 	</body>
 </html>
