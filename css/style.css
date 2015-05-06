@@ -1,9 +1,16 @@
+.container {
+  max-width: 800px;
+  margin: 2% auto;
+}
 
+#headingHead{
+	text-align: center;
+}
 #total_emails{
 	color: red;
 	font-style: italic;
 }
 
 #email_list > p{
-	font-size: .5em;
+	font-size: 1.5em;
 }
