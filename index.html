@@ -11,7 +11,7 @@
 
 //Set up the variables that will be used in grabbing the 'email content' and displaying it on the page.
 		var message = '';
-		var emailDisplay;
+		//var emailDisplay;
 		//function to print the information to the page in the email list section
 		function print(message){
 			var outputDiv = document.getElementById('email_list');
@@ -19,7 +19,7 @@
 			}
 //runs through the array of geemails and captures their properties 
 			for (var i = 0; i < geemails.length; i++){
-				emailDisplay = geemails[i];
+				var emailDisplay = geemails[i];
 				//Displays each property within the geemails array
 				message += '<h4>Date: ' + emailDisplay.date + '</h4>';
 				message += '<h4>From: ' + emailDisplay.sender + '</h4>';
@@ -34,31 +34,46 @@
 	*/	
 		
 	//Display and inbox count on the page to show the total # of messages in the inbox
+	
 	var totalMessages = geemails.length;
 	var totalEmails = document.getElementById("total_emails").innerHTML = totalMessages;
-	
 	
 	
 	/*#6 Set a recurring function to via the JavaScript setInterval function that will call our existing getNewMessage function 
 	that we have created for you that will return a newly created message with the same properties as your previous messages.
 	*/
-
-	/*
-	Below code provided by Jason 
-	Further build out so the page auto-generates new email messages after a set period of time
-	http://www.w3schools.com/jsref/met_win_setinterval.asp
 	
-	
-	
+	//Set up a variable that will eventually be added to the total # of emails displayed
+			var newMessageCount = 0;
 	var timer = setInterval(addNewMessage, 5000);
     
 	function addNewMessage(){
 		var newMessage = getNewMessage(); // Getting a new message by setting the variable for getElement
 		//Logic to build new HTML elements based on the message object you get returned from getNewMessage()
+		
+
+	//Loops through the newMessage function one time in order to generate a new email message 
+			for (var i = 0; i < 1; i++){
+				var emailDisplay = newMessage[i];
+				//Displays each property within the geemails array
+				message += '<h4>Date: ' + newMessage.date + '</h4>';
+				message += '<h4>From: ' + newMessage.sender + '</h4>';
+				message += '<h4>Subject: ' + newMessage.subject + '</h4>';
+				message += '<p>Message: ' + newMessage.body + '</p>';
+				print(message);
+			}
+			
+			//Below is the other half of #5 - updating the count after new messages are displayed
+			//For each interval, add 1 to the new message count total
+			newMessageCount++;	
+			//Update the # of messages to be displayed
+			var totalMessages = geemails.length + newMessageCount;
+			//Update the on page display of the total number of messages in the inbox
+			var totalEmails = document.getElementById("total_emails").innerHTML = totalMessages;
 	};
 
 
-*/		
+
       };
     </script>
 	</head>
