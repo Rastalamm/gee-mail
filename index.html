@@ -3,38 +3,46 @@
 		<script src="js/mail-generator.js"></script>
 		<link href="css/style.css" rel="stylesheet" media="screen">
     <script>
+	/*The below 6 lines fall OUTSIDE of the window.onload function 
+	Could not get the onclick function to work properly with the function inside the window.onload
+	It does not work properly as I cannot get the click function to display the body from the actual message that was clicked *Task 4b*
+	*/
+	
+		function myFunction() {
+			var body = document.getElementById("email_list").getElementsByTagName("P")[0];
+			var elementHTML = body.innerHTML;
+			alert(elementHTML);
+			//document.getElementById("email_list").getElementsByTagName("P")[0]
+		}	
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
         
 // Below code is for task 3 & 4
-
 //Set up the variables that will be used in grabbing the 'email content' and displaying it on the page.
 		var message = '';
-		//var emailDisplay;
 		//function to print the information to the page in the email list section
 		function print(message){
 			var outputDiv = document.getElementById('email_list');
 			outputDiv.innerHTML = message;
 			}
+
 //runs through the array of geemails and captures their properties 
-			for (var i = 0; i < geemails.length; i++){
-				var emailDisplay = geemails[i];
-				//Displays each property within the geemails array
-				message += '<h4>Date: ' + emailDisplay.date + '</h4>';
-				message += '<h4>From: ' + emailDisplay.sender + '</h4>';
-				message += '<h4>Subject: ' + emailDisplay.subject + '</h4>';
-				message += '<p>Message: ' + emailDisplay.body + '</p>';
-			}
-		print(message);
+		for (var i = 0; i < geemails.length; i++){	
+			var emailDisplay = geemails[i];			
+			//Displays each property within the geemails array
+			message += '<h4>Date: ' + emailDisplay.date + '</h4>';
+			message += '<h4>From: ' + emailDisplay.sender + '</h4>';
+			message += '<h4>Subject: ' + emailDisplay.subject + '</h4>';
+			message += '<p onclick="myFunction()">Message: ' + emailDisplay.body + '</p>';
+			print(message);
+		}
 		
 
 	/*
-	#5: Displays the inbox count at the top - may need to update after task 6!!
+	#5: Displays the inbox count at the top
+	The below code only shows the number 10, the updates to the total counter are in code further down
 	*/	
-		
-	//Display and inbox count on the page to show the total # of messages in the inbox
-	
 	var totalMessages = geemails.length;
 	var totalEmails = document.getElementById("total_emails").innerHTML = totalMessages;
 	
@@ -44,44 +52,42 @@
 	*/
 	
 	//Set up a variable that will eventually be added to the total # of emails displayed
-			var newMessageCount = 0;
+	var newMessageCount = 0;
 	var timer = setInterval(addNewMessage, 5000);
     
-	function addNewMessage(){
-		var newMessage = getNewMessage(); // Getting a new message by setting the variable for getElement
-		//Logic to build new HTML elements based on the message object you get returned from getNewMessage()
-		
-
-	//Loops through the newMessage function one time in order to generate a new email message 
-			for (var i = 0; i < 1; i++){
-				var emailDisplay = newMessage[i];
-				//Displays each property within the geemails array
-				message += '<h4>Date: ' + newMessage.date + '</h4>';
-				message += '<h4>From: ' + newMessage.sender + '</h4>';
-				message += '<h4>Subject: ' + newMessage.subject + '</h4>';
-				message += '<p>Message: ' + newMessage.body + '</p>';
-				print(message);
-			}
-			
-			//Below is the other half of #5 - updating the count after new messages are displayed
-			//For each interval, add 1 to the new message count total
-			newMessageCount++;	
-			//Update the # of messages to be displayed
-			var totalMessages = geemails.length + newMessageCount;
-			//Update the on page display of the total number of messages in the inbox
-			var totalEmails = document.getElementById("total_emails").innerHTML = totalMessages;
-	};
-
+		function addNewMessage(){
+			var newMessage = getNewMessage(); // Getting a new message by setting the variable for getElement
+			//Logic to build new HTML elements based on the message object you get returned from getNewMessage()
+		//Loops through the newMessage function one time in order to generate a new email message 
+				for (var i = 0; i < 1; i++){
+					var emailDisplay = newMessage[i];
+					//Displays each property within the geemails array
+					message += '<h4>Date: ' + newMessage.date + '</h4>';
+					message += '<h4>From: ' + newMessage.sender + '</h4>';
+					message += '<h4>Subject: ' + newMessage.subject + '</h4>';
+					message += '<p onclick="myFunction()">Message: ' + newMessage.body + '</p>';
+					print(message);
+				}
+				
+				//Below is the other half of #5 - updating the count after new messages are displayed
+				//For each interval, add 1 to the new message count total
+				newMessageCount++;	
+				//Update the # of messages to be displayed
+				var totalMessages = geemails.length + newMessageCount;
+				//Update the on page display of the total number of messages in the inbox
+				var totalEmails = document.getElementById("total_emails").innerHTML = totalMessages;
+		};
 
 
       };
+
     </script>
 	</head>
 	<body>
 		<div class="container" id="main">
 			<section class="top_header">
 				<div>
-					<h1>Gee-Mail Total: <span id="total_emails"></span></h1>
+					<h1>You've Got <span id="total_emails"></span> Gee-Mail's</h1>
 				</div>
 			</section>
 			

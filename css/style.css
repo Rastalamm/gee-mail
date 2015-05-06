@@ -1,8 +1,9 @@
 
-.top_header{
-
+#total_emails{
+	color: red;
+	font-style: italic;
 }
 
-.mail_content{
-
+#email_list > p{
+	font-size: .5em;
 }
